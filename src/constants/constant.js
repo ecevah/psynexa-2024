@@ -1,0 +1,15 @@
+export const PSYNEXA_FULL_LOGO_BLUE = require("../../assets/images/png/psynexa-full-logo-blue.png");
+export const PSYCHOLOGIST = require("../../assets/images/png/psychologist.png");
+export const FAST_ICON = require("../../assets/images/png/fast-icon.png");
+export const NEXT_ICON = require("../../assets/images/png/next-icon.png");
+export const PAUSE_ICON = require("../../assets/images/png/pause-icon.png");
+export const PLAY_ICON = require("../../assets/images/png/play-icon.png");
+export const PREVIOUS_ICON = require("../../assets/images/png/previous-icon.png");
+export const SUBTITLE_ICON = require("../../assets/images/png/subtitle-icon.png");
+export const SKIP_BACK_ICON = require("../../assets/images/png/skip-back.png");
+export const SKIP_FORWARD_ICON = require("../../assets/images/png/skip-forward.png");
+export const DOWNLOAD_ICON = require("../../assets/images/png/download.png");
+export const FOREST = require("../../assets/images/png/forest.png");
+export const BLUR = require("../../assets/images/png/blur.png");
+export const TICK_ICON = require("../../assets/images/png/tick-icon.png");
+export const HEALTH_ORANGE = require("../../assets/images/jpeg/health-orange.jpg");
