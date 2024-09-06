@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Dimensions,
   FlatList,
   Image,
@@ -31,6 +32,7 @@ const ListeningScreen = ({ route }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [sound, setSound] = useState(null);
   const [playbackStatus, setPlaybackStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
   const navigation = useNavigation();
 
@@ -46,7 +48,21 @@ const ListeningScreen = ({ route }) => {
     loadSound();
   }, [currentSong]);
 
+  function moveItemToStart(arr, id) {
+    // İlgili ID'ye sahip öğeyi bul
+    const index = arr.findIndex((item) => item.id === id);
+
+    // Eğer öğe bulunduysa
+    if (index > -1) {
+      const [item] = arr.splice(index, 1); // Öğeyi diziden çıkar
+      arr.unshift(item); // Öğeyi dizinin başına ekle
+    }
+
+    return arr;
+  }
+
   const loadSound = async () => {
+    setIsLoading(true);
     if (sound) {
       await sound.unloadAsync();
     }
@@ -62,8 +78,10 @@ const ListeningScreen = ({ route }) => {
       );
       setSound(newSound);
       setPlaybackStatus(status);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error loading sound:", error);
+      setIsLoading(false);
     }
   };
 
@@ -168,7 +186,7 @@ const ListeningScreen = ({ route }) => {
       </View>
       <View>
         <FlatList
-          data={MEDITATIONS}
+          data={moveItemToStart(MEDITATIONS, id)}
           showsHorizontalScrollIndicator={false}
           ref={ref}
           pagingEnabled
@@ -219,11 +237,18 @@ const ListeningScreen = ({ route }) => {
         <TouchableOpacity onPress={handlePrevious}>
           <SvgSkipBack />
         </TouchableOpacity>
-        <TouchableOpacity onPress={togglePlayback}>
+        {isLoading ? (
           <View style={styles.playButton}>
-            {isPlaying ? <SvgPauseIcon /> : <SvgPlayIcon />}
+            <ActivityIndicator size="small" color="#FFFFFF" />
           </View>
-        </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={togglePlayback}>
+            <View style={styles.playButton}>
+              {isPlaying ? <SvgPauseIcon /> : <SvgPlayIcon />}
+            </View>
+          </TouchableOpacity>
+        )}
+
         <TouchableOpacity onPress={handleNext}>
           <SvgSkipForward />
         </TouchableOpacity>

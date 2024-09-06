@@ -3,8 +3,8 @@ import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 const SvgPlusIcon = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={24}
-    height={24}
+    width={30}
+    height={30}
     fill="none"
     viewBox="0 0 34 34"
     {...props}

@@ -7,8 +7,10 @@ import {
 } from "react-native";
 import React from "react";
 import SvgDailyMood from "./images/DailyMood";
+import { useNavigation } from "@react-navigation/native";
 const { height, width } = Dimensions.get("window");
 export default function CreateDailyMood() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.dailyMoodImage}>
@@ -18,7 +20,7 @@ export default function CreateDailyMood() {
       <Text style={styles.text}>
         Bugünkü ruh halinizi kaydedin ve kendinizi daha iyi anlamaya başlayın.
       </Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("SelectMoodScreen")}>
         <Text style={styles.button}>Nasıl Hissediyorsun?</Text>
       </TouchableOpacity>
     </View>

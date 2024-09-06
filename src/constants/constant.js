@@ -13,3 +13,5 @@ export const FOREST = require("../../assets/images/png/forest.png");
 export const BLUR = require("../../assets/images/png/blur.png");
 export const TICK_ICON = require("../../assets/images/png/tick-icon.png");
 export const HEALTH_ORANGE = require("../../assets/images/jpeg/health-orange.jpg");
+export const BlackMask = require("../../assets/images/jpeg/black-mask.jpg");
+export const YOGA = require("../../assets/images/jpeg/yoga.jpg");

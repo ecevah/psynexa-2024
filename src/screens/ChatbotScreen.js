@@ -21,12 +21,15 @@ import SvgPaperPlane from "../components/icons/PaperPlane";
 import SvgPlay from "../components/tabs/PlayIcon";
 import SvgPause from "../components/icons/PauseIcon";
 import { PSYNEXA_FULL_LOGO_BLUE } from "../constants/constant";
+import SvgLogossvg from "../../assets/images/newResult/Logossvg";
+import Markdown from "react-native-markdown-display";
 
 const { width } = Dimensions.get("window");
 
 export default function ChatBotScreen({ route }) {
   const { session_id } = route.params;
   const [messages, setMessages] = useState([]);
+  const [inputHeight, setInputHeight] = useState(75);
   const [text, setText] = useState("");
   const [loadings, setLoadings] = useState(false);
   const [audioLoadings, setAudioLoadings] = useState(false);
@@ -237,12 +240,13 @@ export default function ChatBotScreen({ route }) {
         },
       ]);
       setText("");
+      setInputHeight(75);
 
       try {
         const formData = new FormData();
         formData.append("client_id", "19");
         formData.append("session_id", session_id);
-        formData.append("message", "selam");
+        formData.append("message", text);
 
         const response = await fetch("http://88.223.92.105:8000/text_predict", {
           method: "POST",
@@ -354,7 +358,7 @@ export default function ChatBotScreen({ route }) {
               marginTop: 50,
             }}
           >
-            <Image source={PSYNEXA_FULL_LOGO_BLUE} height={40} width={200} />
+            <SvgLogossvg />
             <Text
               style={{
                 color: "#000000",
@@ -380,7 +384,9 @@ export default function ChatBotScreen({ route }) {
                       : styles.meditationMessage,
                   ]}
                 >
-                  <Text style={styles.meditationText}>{message.text}</Text>
+                  <Markdown style={styles.meditationText}>
+                    {message.text}
+                  </Markdown>
                 </View>
                 <Text
                   style={[
@@ -401,7 +407,7 @@ export default function ChatBotScreen({ route }) {
                     message.fromUser ? styles.userMessage : styles.botMessage,
                   ]}
                 >
-                  <Text style={styles.messageText}>{message.text}</Text>
+                  <Markdown style={styles.messageText}>{message.text}</Markdown>
                 </View>
                 <Text
                   style={[
@@ -486,12 +492,25 @@ export default function ChatBotScreen({ route }) {
           </View>
         ) : (
           <>
-            <View style={{ position: "relative", width: "100%", height: 50 }}>
+            <View
+              style={{
+                position: "relative",
+                width: "100%",
+                height: Math.min(Math.max(50, inputHeight), 150),
+              }}
+            >
               <TextInput
-                style={styles.input}
+                style={[
+                  styles.input,
+                  { height: Math.min(Math.max(50, inputHeight), 150) },
+                ]}
                 value={text}
                 onChangeText={setText}
                 placeholder="Mesajınızı yazın"
+                multiline={true} // allows multiline text input
+                onContentSizeChange={(e) =>
+                  setInputHeight(e.nativeEvent.contentSize.height)
+                }
               />
               {text === "" && !loadings ? (
                 audioLoadings ? (
@@ -580,17 +599,21 @@ const styles = StyleSheet.create({
   inputContainer: {
     display: "flex",
     width: width - 8,
-    height: 75,
     flexDirection: "row",
     padding: 10,
     justifyContent: "space-between",
+    elevation: 9, // For Android shadow
+    shadowColor: "#9d9d9d", // For iOS shadow
+    shadowOffset: { width: 0, height: 1 }, // Offset for iOS
+    shadowOpacity: 0.15, // Opacity for iOS
+    shadowRadius: 9, // Blur radius for iOS
   },
   input: {
     flex: 1,
-    height: 65,
     width: "100%",
     borderRadius: 25,
-    paddingHorizontal: 15,
+    paddingLeft: 15,
+    paddingRight: 60,
     backgroundColor: "#FFFFFF",
   },
   sendButton: {
@@ -600,7 +623,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     position: "absolute",
     right: 6,
-    top: 4,
+    bottom: 4,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
