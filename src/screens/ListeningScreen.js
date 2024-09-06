@@ -73,7 +73,7 @@ const ListeningScreen = ({ route }) => {
     try {
       const { sound: newSound, status } = await Audio.Sound.createAsync(
         meditation.url,
-        { shouldPlay: isPlaying },
+        { shouldPlay: isPlaying, isMuted: false },
         updateStatus
       );
       setSound(newSound);

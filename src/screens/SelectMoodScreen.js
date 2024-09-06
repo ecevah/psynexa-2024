@@ -93,12 +93,12 @@ export default function SelectMoodScreen() {
               styles.itemContainer,
               {
                 backgroundColor: EMOTION.suprised.color,
-                borderWidth: selectedMood === "surprised" ? 1 : 0,
+                borderWidth: selectedMood === "suprised" ? 1 : 0,
                 borderColor:
-                  selectedMood === "surprised" ? "#000" : "transparent",
+                  selectedMood === "suprised" ? "#000" : "transparent",
               },
             ]}
-            onPress={() => handleSelectMood("surprised")}
+            onPress={() => handleSelectMood("suprised")}
           >
             {EMOTION.suprised.item}
             <Text style={styles.itemText}>Stresli</Text>

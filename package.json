@@ -10,7 +10,7 @@
     "svgricon": "svgr ./assets/icons -d ./src/components/icons --native --icon --svg-props \"width={24},height={24}\"",
     "svgrsvg": "svgr ./assets/images/svg -d ./src/components/images --native --icon --svg-props \"width={24},height={24}\"",
     "svgrsvgicon": "svgr ./assets/images/object -d ./src/components/svg --native --icon --svg-props \"width={24},height={24}\"",
-    "svgrsvgnew": "svgr ./assets/images/new -d ./assets/images/newResult --native --icon --svg-props \"width={24},height={24}\""
+    "svgrsvgnew": "svgr ./assets/images/new -d ./assets/images/newResult1 --native --icon --svg-props \"width={24},height={24}\""
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.2.3",

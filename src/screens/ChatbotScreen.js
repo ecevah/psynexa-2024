@@ -118,14 +118,13 @@ export default function ChatBotScreen({ route }) {
       };
       setMessages([...messages, newRecording]);
 
-      // Prepare form data
       const formData = new FormData();
-      formData.append("client_id", "19");
+      formData.append("client_id", "100");
       formData.append("session_id", session_id);
       formData.append("file", {
         uri: fileUri,
         name: "audio.wav",
-        type: "audio/wav",
+        type: "audio/wave",
       });
 
       console.log("FormData prepared");
@@ -134,8 +133,17 @@ export default function ChatBotScreen({ route }) {
       // Send request to server
       const response = await fetch("http://88.223.92.105:8000/audio_predict", {
         method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         body: formData,
       });
+
+      // Handle response
+      if (!response.ok) {
+        setAudioLoadings(false);
+        throw new Error(`Network response was not ok: ${response.statusText}`);
+      }
 
       // Handle response
       if (!response.ok) {
@@ -244,7 +252,7 @@ export default function ChatBotScreen({ route }) {
 
       try {
         const formData = new FormData();
-        formData.append("client_id", "19");
+        formData.append("client_id", "100");
         formData.append("session_id", session_id);
         formData.append("message", text);
 
@@ -300,7 +308,7 @@ export default function ChatBotScreen({ route }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          client_id: "19",
+          client_id: "100",
           session_id: session_id,
         }),
       });

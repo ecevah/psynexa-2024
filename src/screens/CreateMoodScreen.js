@@ -1,4 +1,5 @@
 import {
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
@@ -10,13 +11,21 @@ import SvgPlusIcon from "../components/icons/PlusIcon";
 import { useNavigation } from "@react-navigation/native";
 import { EMOTION } from "../constants/emotion_constant";
 
+const MOOD_LABELS = {
+  happy: "Çok Mutlu",
+  normal: "Mutlu",
+  sad: "Üzgün",
+  surprised: "Stresli",
+  angry: "Kızgın",
+};
+
 export default function CreateMoodScreen({ route }) {
   const navigation = useNavigation();
   const { mood } = route.params;
   const [text, setText] = useState("");
-  const selectedEmotion = Object.values(EMOTION).find(
-    (emotion) => emotion.name === mood.toLowerCase()
-  );
+
+  const selectedEmotion = EMOTION[mood.toLowerCase()] || EMOTION.default;
+  const moodLabel = MOOD_LABELS[mood.toLowerCase()] || "Belirsiz";
 
   return (
     <View style={styles.container}>
@@ -29,26 +38,29 @@ export default function CreateMoodScreen({ route }) {
         <Text style={styles.headerText}>Ruh Halinizi Seçin</Text>
         <View style={{ width: 48, height: 48 }} />
       </View>
+      <View
+        style={[styles.moodIcon, { backgroundColor: selectedEmotion.color }]}
+      >
+        {selectedEmotion.item}
+        <Text style={styles.moodText}>{moodLabel}</Text>
+      </View>
 
-      {/* Display the selected mood icon and name */}
-      {selectedEmotion ? (
-        <View
-          style={[styles.moodIcon, { backgroundColor: selectedEmotion.color }]}
-        >
-          {selectedEmotion.item}
-          <Text style={styles.moodText}>{mood}</Text>
-        </View>
-      ) : (
-        <Text style={styles.errorText}>Geçersiz ruh hali seçimi</Text>
-      )}
       <TextInput
-        style={[styles.input, { height: "80%", backgroundColor: "red" }]}
+        style={styles.input}
         value={text}
         onChangeText={setText}
-        placeholder="Mesajınızı yazın"
+        placeholder="Düşüncelerinizi yazın.."
         multiline={true}
       />
-      <Text>{mood}</Text>
+      <View style={{ height: 330 }}></View>
+      {text === "" ? null : (
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("Home")}
+        >
+          <Text style={styles.buttonText}>Kaydet</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -92,7 +104,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginLeft: 24,
     alignItems: "center",
-    width: 120,
+    width: 140,
+    marginBottom: 20,
   },
   moodText: {
     fontSize: 14,
@@ -101,10 +114,26 @@ const styles = StyleSheet.create({
     textTransform: "capitalize",
     lineHeight: 14,
   },
-  errorText: {
+  input: {
+    height: 250,
+    padding: 10,
     fontSize: 16,
-    color: "red",
-    textAlign: "center",
+    marginHorizontal: 24,
     marginTop: 20,
+    marginBottom: 20,
+    textAlignVertical: "top",
+  },
+  button: {
+    height: 50,
+    backgroundColor: "#0A6EBD",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    marginHorizontal: 20,
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "#FFFFFF",
+    fontWeight: "bold",
   },
 });

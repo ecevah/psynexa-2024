@@ -1,3 +1,4 @@
+import SvgOnboardtrnexa from "../../assets/images/newResult1/Onboardtrnexa";
 import SvgOnboardBrain from "../components/images/OnboardBrain";
 import SvgOnboardMeditation from "../components/images/OnboardMeditation";
 import SvgOnboardNexabot from "../components/images/OnboardNexabot";
@@ -24,6 +25,6 @@ export const ONBOARDING_ARRAY = [
     title: "Nexabot, Sizin Mental Arkadaşınız",
     description:
       "Nexabot, seni anlar, seni duygusal olarak analiz eder ve sana uygun bir duygu durumuna bürünerek iç dünyanda sana bir arkadaş olur.",
-    image: <SvgOnboardNexabot style={{ marginBottom: 40 }}></SvgOnboardNexabot>,
+    image: <SvgOnboardtrnexa style={{ marginBottom: 40 }}></SvgOnboardtrnexa>,
   },
 ];
