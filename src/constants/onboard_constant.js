@@ -5,25 +5,25 @@ import SvgOnboardNexabot from "../components/images/OnboardNexabot";
 export const ONBOARDING_ARRAY = [
   {
     id: "1",
-    title: "Meditasyon Yolculuğunu Dinlemek İç Sesinize",
+    title: "Meditasyon Dinleyerek Kendinizi Rahatlatın",
     description:
       "Meditasyon dinlemek zihninizi sakinleştirmek, stresi azaltmak ve iç huzura kavuşmak için etkili bir yöntemdir.",
     image: <SvgOnboardBrain></SvgOnboardBrain>,
   },
   {
     id: "2",
-    title: "Günlük Ruh Hali Takibi",
+    title: "Günlük Mod Takibinizi Yapın",
     description:
-      "Kişinin belli bir zaman dilimi içerisinde günlük olarak yaşadığı duygu durumlarının kaydedilip analiz edilmesi sürecidir.",
+      "Günlük olarak yaşadığınız duygu durumlarını kaydedin, kendinizi analiz edin.",
     image: (
       <SvgOnboardMeditation style={{ marginBottom: 30 }}></SvgOnboardMeditation>
     ),
   },
   {
     id: "3",
-    title: "Yapay Zeka ile NexaBot Destekli Kişisel Koç",
+    title: "Nexabot, Sizin Mental Arkadaşınız",
     description:
-      "Meditasyon dinlemek zihninizi sakinleştirmek, stresi azaltmak ve iç huzura kavuşmak için etkili bir yöntemdir.",
+      "Nexabot, seni anlar, seni duygusal olarak analiz eder ve sana uygun bir duygu durumuna bürünerek iç dünyanda sana bir arkadaş olur.",
     image: <SvgOnboardNexabot style={{ marginBottom: 40 }}></SvgOnboardNexabot>,
   },
 ];

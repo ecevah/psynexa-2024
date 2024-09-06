@@ -31,6 +31,7 @@ import TestScreen from "./src/screens/TestScreen";
 import TestCompletedScreen from "./src/screens/TestCompletedScreen";
 import TestListScreen from "./src/screens/TestListScreen";
 import SelectMoodScreen from "./src/screens/SelectMoodScreen";
+import CreateMoodScreen from "./src/screens/CreateMoodScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -176,6 +177,7 @@ export default function App() {
         <Stack.Screen name="TestScreen" component={TestScreen} />
         <Stack.Screen name="TestDetailScreen" component={TestDetailScreen} />
         <Stack.Screen name="SelectMoodScreen" component={SelectMoodScreen} />
+        <Stack.Screen name="CreateMoodScreen" component={CreateMoodScreen} />
         <Stack.Screen
           name="TestCompletedScreen"
           component={TestCompletedScreen}

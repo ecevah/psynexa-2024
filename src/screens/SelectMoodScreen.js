@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -5,17 +6,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
 import SvgPlusIcon from "../components/icons/PlusIcon";
 import { useNavigation } from "@react-navigation/native";
-import SvgAngry from "../components/emotions/Angry";
+import { EMOTION } from "../constants/emotion_constant";
 const { width } = Dimensions.get("window");
+
 export default function SelectMoodScreen() {
   const navigation = useNavigation();
+  const [selectedMood, setSelectedMood] = useState(null); // State to track selected mood
+
+  const handleSelectMood = (mood) => {
+    setSelectedMood(mood); // Update selected mood
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <View style={styles.backButton}>
             <SvgPlusIcon />
           </View>
@@ -23,11 +30,104 @@ export default function SelectMoodScreen() {
         <Text style={styles.headerText}>Ruh Halinizi Seçin</Text>
         <View style={{ width: 48, height: 48 }} />
       </View>
-      <View style={styles.content}>
-        <View style={styles.itemContainer}>
-          <SvgAngry />
-          <Text style={styles.itemText}>Kötü</Text>
+
+      <View
+        style={{
+          height: "85%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <View style={styles.content}>
+          {/* Happy Mood */}
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              {
+                backgroundColor: EMOTION.happy.color,
+                borderWidth: selectedMood === "happy" ? 1 : 0,
+                borderColor: selectedMood === "happy" ? "#000" : "transparent",
+              },
+            ]}
+            onPress={() => handleSelectMood("happy")}
+          >
+            {EMOTION.happy.item}
+            <Text style={styles.itemText}>Çok Mutlu</Text>
+          </TouchableOpacity>
+
+          {/* Normal Mood */}
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              {
+                backgroundColor: EMOTION.normal.color,
+                borderWidth: selectedMood === "normal" ? 1 : 0,
+                borderColor: selectedMood === "normal" ? "#000" : "transparent",
+              },
+            ]}
+            onPress={() => handleSelectMood("normal")}
+          >
+            {EMOTION.normal.item}
+            <Text style={styles.itemText}>Mutlu</Text>
+          </TouchableOpacity>
+
+          {/* Sad Mood */}
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              {
+                backgroundColor: EMOTION.sad.color,
+                borderWidth: selectedMood === "sad" ? 1 : 0,
+                borderColor: selectedMood === "sad" ? "#000" : "transparent",
+              },
+            ]}
+            onPress={() => handleSelectMood("sad")}
+          >
+            {EMOTION.sad.item}
+            <Text style={styles.itemText}>Üzgün</Text>
+          </TouchableOpacity>
+
+          {/* Surprised Mood */}
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              {
+                backgroundColor: EMOTION.suprised.color,
+                borderWidth: selectedMood === "surprised" ? 1 : 0,
+                borderColor:
+                  selectedMood === "surprised" ? "#000" : "transparent",
+              },
+            ]}
+            onPress={() => handleSelectMood("surprised")}
+          >
+            {EMOTION.suprised.item}
+            <Text style={styles.itemText}>Stresli</Text>
+          </TouchableOpacity>
+
+          {/* Angry Mood */}
+          <TouchableOpacity
+            style={[
+              styles.itemContainer,
+              {
+                backgroundColor: EMOTION.angry.color,
+                borderWidth: selectedMood === "angry" ? 1 : 0,
+                borderColor: selectedMood === "angry" ? "#000" : "transparent",
+              },
+            ]}
+            onPress={() => handleSelectMood("angry")}
+          >
+            {EMOTION.angry.item}
+            <Text style={styles.itemText}>Sinirli</Text>
+          </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate("CreateMoodScreen", { mood: selectedMood })
+          }
+        >
+          <Text style={styles.buttonText}>Devam Et</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -77,5 +177,36 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 }, // Offset for iOS
     shadowOpacity: 0.15, // Opacity for iOS
     shadowRadius: 9, // Blur radius for iOS
+  },
+  itemContainer: {
+    marginVertical: 5,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 15,
+  },
+  itemText: {
+    fontSize: 17,
+    fontWeight: "500",
+    color: "#000000",
+    lineHeight: 18,
+    marginLeft: 10,
+  },
+  button: {
+    width: width - 48,
+    marginHorizontal: 24,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 16,
+    backgroundColor: "#0A6EBD",
+    borderRadius: 50,
+    marginBottom: 30,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#FFFFFF",
   },
 });

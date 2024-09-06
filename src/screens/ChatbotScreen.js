@@ -502,7 +502,7 @@ export default function ChatBotScreen({ route }) {
               <TextInput
                 style={[
                   styles.input,
-                  { height: Math.min(Math.max(50, inputHeight), 150) },
+                  { height: Math.min(Math.max(75, inputHeight), 150) },
                 ]}
                 value={text}
                 onChangeText={setText}
