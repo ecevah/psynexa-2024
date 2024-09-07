@@ -1,4 +1,11 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import SvgRightIosArrow from "../components/icons/RightIosArrow";
 import ProfileContentContant from "../components/ProfileContentContant";
@@ -10,6 +17,7 @@ import SvgInfo from "../components/icons/Info";
 import SvgExit from "../components/icons/Exit";
 import SvgSettingsWheel from "../components/icons/SettingsWheel";
 import SvgInfoSquare from "../components/icons/InfoSquare";
+import { AVATAR_BUSRA } from "../constants/constant";
 
 const ProfileScreen = () => {
   const { width } = Dimensions.get("window");
@@ -63,13 +71,26 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       <Text style={styles.headerText}>Profil</Text>
       <ScrollView>
-        <View style={{ marginLeft: 24, marginTop: 20, marginBottom: 20 }}>
-          <Text style={{ color: "#0D1717", fontSize: 24, fontWeight: "600" }}>
-            Fatmanur Deniz
-          </Text>
-          <Text style={{ color: "#0D1717", fontSize: 12, fontWeight: "400" }}>
-            fatmanurdeniz@gmail.com
-          </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            marginLeft: 24,
+          }}
+        >
+          <Image
+            source={AVATAR_BUSRA}
+            style={{ width: 48, height: 48, borderRadius: 24, marginRight: 8 }}
+          />
+          <View style={{ marginTop: 20, marginBottom: 20 }}>
+            <Text style={{ color: "#0D1717", fontSize: 24, fontWeight: "600" }}>
+              Fatmanur Deniz
+            </Text>
+            <Text style={{ color: "#0D1717", fontSize: 12, fontWeight: "400" }}>
+              fatmanurdeniz@gmail.com
+            </Text>
+          </View>
         </View>
         <ProfileContentContant title="Ayarlar" data={settingsArray} />
         <ProfileContentContant

@@ -24,6 +24,7 @@ import BlogArticleItem from "../components/BlogArticleItem";
 import { BLOGS } from "../constants/blogs_constant";
 import TestCardItem from "../components/TestCardItem";
 import { TESTS } from "../constants/test_constant";
+import { AVATAR_BUSRA } from "../constants/constant";
 const { width } = Dimensions.get("window");
 
 export default function App() {
@@ -46,27 +47,39 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View>
-          <Text
-            style={{
-              color: "#0B1215",
-              fontSize: 14,
-              fontWeight: "400",
-              letterSpacing: -0.28,
-            }}
-          >
-            {greeting}
-          </Text>
-          <Text
-            style={{
-              color: "#0B1215",
-              fontSize: 24,
-              fontWeight: "600",
-              letterSpacing: -0.48,
-            }}
-          >
-            Fatmanur Deniz
-          </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={AVATAR_BUSRA}
+            style={{ width: 48, height: 48, borderRadius: 24, marginRight: 8 }}
+          />
+          <View>
+            <Text
+              style={{
+                color: "#0B1215",
+                fontSize: 14,
+                fontWeight: "400",
+                letterSpacing: -0.28,
+              }}
+            >
+              {greeting}
+            </Text>
+            <Text
+              style={{
+                color: "#0B1215",
+                fontSize: 24,
+                fontWeight: "600",
+                letterSpacing: -0.48,
+              }}
+            >
+              Fatmanur Deniz
+            </Text>
+          </View>
         </View>
         <View style={{ display: "flex", flexDirection: "row" }}>
           <TouchableOpacity>

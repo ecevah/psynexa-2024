@@ -15,3 +15,4 @@ export const TICK_ICON = require("../../assets/images/png/tick-icon.png");
 export const HEALTH_ORANGE = require("../../assets/images/jpeg/health-orange.jpg");
 export const BlackMask = require("../../assets/images/jpeg/black-mask.jpg");
 export const YOGA = require("../../assets/images/jpeg/yoga.jpg");
+export const AVATAR_BUSRA = require("../../assets/images/jpeg/avatar.jpg");
